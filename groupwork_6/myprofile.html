@@ -25,7 +25,7 @@
 
 <body>
   <div id="app" class="h-screen bg-gray-300">
-    <div class="container flex justify-center">
+    <div class="container flex justify-center mx-auto pt-5">
       <div class="p-3 bg-white rounded-xl max-w-lg hover:shadow">
         <div class="flex justify-between w-full"> <img v-bind:src="image" width="200" class="rounded-lg">
           <div class="ml-2">
@@ -53,40 +53,40 @@
             <div class="grid grid-cols-2 gap-4">
               <div class="flex flex-col">
                 <label for="firstname" class="text-sm leading-7 text-gray-600">First Name</label>
-                <input type="text" id="firstname" v-model="firstname" name="firstname"
+                <input type="text" id="firstname" v-model="formdata.firstname" name="firstname"
                   class="bg-gray-100 rounded px-4 py-2 mb-4">
               </div>
               <div class="flex flex-col">
                 <label for="lastname" class="text-sm leading-7 text-gray-600">Last Name</label>
-                <input type="text" id="lastname" v-model="lastname" name="lastname"
+                <input type="text" id="lastname" v-model="formdata.lastname" name="lastname"
                   class="bg-gray-100 rounded px-4 py-2 mb-4">
               </div>
               <div class="flex flex-col">
                 <label for="age" class="text-sm leading-7 text-gray-600">Age</label>
-                <input type="text" id="age" v-model="age" name="age" class="bg-gray-100 rounded px-4 py-2 mb-4">
+                <input type="text" id="age" v-model="formdata.age" name="age" class="bg-gray-100 rounded px-4 py-2 mb-4">
               </div>
               <div class="flex flex-col">
                 <label class="text-sm leading-7 text-gray-600">Gender</label>
                 <div class="flex flex-row pt-2 space-x-2">
-                  <input type="radio" id="Male" v-model="gender" name="gender" value="M"
+                  <input type="radio" id="Male" v-model="formdata.gender" name="gender" value="M"
                     class="bg-gray-100 rounded px-4 py-2 mb-4">
                   <label for="Male">Male</label>
-                  <input type="radio" id="Female" v-model="gender" name="gender" value="F"
+                  <input type="radio" id="Female" v-model="formdata.gender" name="gender" value="F"
                     class="bg-gray-100 rounded px-4 py-2 mb-4">
                   <label for="Female">Female</label>
                 </div>
               </div>
               <div class="flex flex-col">
                 <label for="email" class="text-sm leading-7 text-gray-600">Email</label>
-                <input type="text" id="email" v-model="email" name="email" class="bg-gray-100 rounded px-4 py-2 mb-4">
+                <input type="text" id="email" v-model="formdata.email" name="email" class="bg-gray-100 rounded px-4 py-2 mb-4">
               </div>
               <div class="flex flex-col">
                 <label for="phone" class="text-sm leading-7 text-gray-600">Phone Number</label>
-                <input type="text" id="phone" v-model="phone" name="phone" class="bg-gray-100 rounded px-4 py-2 mb-4">
+                <input type="text" id="phone" v-model="formdata.phone" name="phone" class="bg-gray-100 rounded px-4 py-2 mb-4">
               </div>
               <div class="flex flex-col col-span-2">
                 <label for="chosendegree" class="text-sm leading-7 text-gray-600">Degree</label>
-                <select id="chosendegree" v-model="chosendegree" name="chosendegree"
+                <select id="chosendegree" v-model="formdata.chosendegree" name="chosendegree"
                   class="bg-gray-100 rounded px-4 py-2 mb-4">
                   <option v-for="degree in degree_lists" :value="degree.degree_id">
                     {{degree.degree_name}}

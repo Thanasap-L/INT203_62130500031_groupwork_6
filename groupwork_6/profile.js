@@ -1,29 +1,64 @@
+const constraints = {
+    firstname: {
+        presense: true,
+    },
+    lastname: {
+        presense: true,
+    },
+    age: {
+        presence: true,
+        numericality: {
+            lessThan: 150
+        }
+    },
+    gender: {
+        presence: true,
+    },
+    email: {
+        presence: true,
+        email: true
+    },
+    phone: {
+        presence: true,
+        length: {
+            minimum: 10,
+            message: "must be at least 10 digits"
+        }
+    },
+    chosendegree: {
+        presence: true
+    }
+}
+
 const app = {
     data() {
         return {
             image: './images/1.jpg',
             name: 'Thanasap Leelapisuth',
             position: 'Student',
-            article: '25',
-            follower: '103',
+            article: '10',
+            follower: '112',
             rating: '7.0',
-            firstname: null,
-            lastname: null,
-            age: null,
-            gender: null,
-            email: null,
-            phone: null,
-            chosendegree: null,
-            degree_lists: [{ degree_id: 1, degree_name: 'Bachelor Degrees'},
-                           { degree_id: 2, degree_name: 'Master Degrees'},
-                           { degree_id: 3, degree_name: 'Doctor Degrees'}],
+            formdata: {
+                firstname: null,
+                lastname: null,
+                age: null,
+                gender: null,
+                email: null,
+                phone: null,
+                chosendegree: null,
+            },
+            degree_lists: [{ degree_id: 1, degree_name: 'Bachelor Degrees' },
+            { degree_id: 2, degree_name: 'Master Degrees' },
+            { degree_id: 3, degree_name: 'Doctor Degrees' }],
             errors: []
         }
     },
     methods: {
         checkForm() {
-            this.errors = [];
-
+            console.log(this.formdata)
+            this.errors = validate(this.formdata,
+                constraints)
             if (!this.firstname) {
                 this.errors.push('First name required.')
             }
