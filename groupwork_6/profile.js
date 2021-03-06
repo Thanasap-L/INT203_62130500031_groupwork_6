@@ -1,17 +1,15 @@
 const constraints = {
     firstname: {
-        presence: { message: 'is required' },
+        presence: { message: "is required" },
         format: {
-            pattern: "[a-z]+",
+            pattern: "[a-zA-Z]+",
             message: "can only contain a-z"
         }
     },
     lastname: {
-        presence: {
-            message: 'is required'
-        },
+        presence: { message: "is required" },
         format: {
-            pattern: "[a-z]+",
+            pattern: "[a-zA-Z]+",
             message: "can only contain a-z"
         }
     },
@@ -23,20 +21,20 @@ const constraints = {
         }
     },
     gender: {
-        presence: {
-            message: 'is required'
-        }
+        presence: { message: "is required" }
     },
     email: {
-        email: {
-            message: "doesn't look like a valid"
-        }
+        email: { message: "doesn't look like a valid" }
     },
     phone: {
         presence: true,
         length: {
             minimum: 10,
             message: "must be at least 10 digits"
+        },
+        format: {
+            pattern: "[0-9]+",
+            message: "can only contain and 0-9"
         }
     },
     chosendegree: {
@@ -52,14 +50,14 @@ const app = {
             rating: '7.0',
             newFirstname: null,
             newLastname: null,
-            newAage: null,
+            newAge: null,
             newGender: null,
             newEmail: null,
             newPhone: null,
             newChosendegree: "",
-            degree_lists: [{ degree_id: 1, degree_name: 'Bachelor Degrees' },
-            { degree_id: 2, degree_name: 'Master Degrees' },
-            { degree_id: 3, degree_name: 'Doctor Degrees' }],
+            degree_lists: [{ degree_id: 0, degree_name: 'Bachelor Degrees' },
+            { degree_id: 1, degree_name: 'Master Degrees' },
+            { degree_id: 2, degree_name: 'Doctor Degrees' }],
             errors: null
         }
     },
@@ -75,19 +73,9 @@ const app = {
                 chosendegree: this.newChosendegree,
             },
                 constraints)
-            if (this.errors) {
-                e.preventDefault();
-            }
-            else {
+            if (!this.errors) {
                 alert("Your personal is updated")
             }
-        },
-        submit() {
-            this.newFirstname = this.firstname
-            this.newLastname = this.lastname
-            this.newAge = this.age
-            this.newPhone = this.phone
-            this.newChosendegree = this.chosendegree
         }
     }
 }
