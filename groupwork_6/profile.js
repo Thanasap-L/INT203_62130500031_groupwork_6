@@ -1,22 +1,36 @@
 const constraints = {
     firstname: {
-        presense: true,
+        presence: { message: 'is required' },
+        format: {
+            pattern: "[a-z]+",
+            message: "can only contain a-z"
+        }
     },
     lastname: {
-        presense: true,
+        presence: {
+            message: 'is required'
+        },
+        format: {
+            pattern: "[a-z]+",
+            message: "can only contain a-z"
+        }
     },
     age: {
         presence: true,
         numericality: {
-            lessThan: 150
+            lessThan: 150,
+            notValid: "must be integer"
         }
     },
     gender: {
-        presence: true,
+        presence: {
+            message: 'is required'
+        }
     },
     email: {
-        presence: true,
-        email: true
+        email: {
+            message: "doesn't look like a valid"
+        }
     },
     phone: {
         presence: true,
@@ -27,68 +41,53 @@ const constraints = {
     },
     chosendegree: {
         presence: true
-    }
+    },
 }
-
 const app = {
     data() {
         return {
             image: './images/1.jpg',
-            name: 'Thanasap Leelapisuth',
-            position: 'Student',
             article: '10',
             follower: '112',
             rating: '7.0',
-            formdata: {
-                firstname: null,
-                lastname: null,
-                age: null,
-                gender: null,
-                email: null,
-                phone: null,
-                chosendegree: null,
-            },
+            newFirstname: null,
+            newLastname: null,
+            newAage: null,
+            newGender: null,
+            newEmail: null,
+            newPhone: null,
+            newChosendegree: "",
             degree_lists: [{ degree_id: 1, degree_name: 'Bachelor Degrees' },
             { degree_id: 2, degree_name: 'Master Degrees' },
             { degree_id: 3, degree_name: 'Doctor Degrees' }],
-            errors: []
+            errors: null
         }
     },
     methods: {
-        checkForm() {
-            console.log(this.formdata)
-            this.errors = validate(this.formdata,
+        checkForm(e) {
+            this.errors = validate({
+                firstname: this.newFirstname,
+                lastname: this.newLastname,
+                age: this.newAge,
+                gender: this.newGender,
+                email: this.newEmail,
+                phone: this.newPhone,
+                chosendegree: this.newChosendegree,
+            },
                 constraints)
-            if (!this.firstname) {
-                this.errors.push('First name required.')
+            if (this.errors) {
+                e.preventDefault();
             }
-            if (!this.lastname) {
-                this.errors.push('Last name required.')
-            }
-            if (!this.age) {
-                this.errors.push('Age required.')
-            }
-            if (!this.gender) {
-                this.errors.push('Gender required.')
-            }
-            if (!this.email) {
-                this.errors.push('Email required.')
-            } else if (!this.validEmail(this.email)) {
-                this.errors.push('Valid email required.')
-            }
-            if (!this.phone) {
-                this.errors.push('Phone required.')
-            }
-            if (!this.chosendegree) {
-                this.errors.push('Degree required.')
-            }
-            if (!this.errors.length) {
-                alert("Registered successfully.")
+            else {
+                alert("Your personal is updated")
             }
         },
-        validEmail(email) {
-            var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            return re.test(email);
+        submit() {
+            this.newFirstname = this.firstname
+            this.newLastname = this.lastname
+            this.newAge = this.age
+            this.newPhone = this.phone
+            this.newChosendegree = this.chosendegree
         }
     }
 }

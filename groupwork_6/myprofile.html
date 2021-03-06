@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gruoupwork6</title>
+  <title>Groupwork6</title>
 
   <!-- https://google.github.io/material-design-icons/#icon-font-for-the-web -->
   <!-- Using via Google Web Fonts -->
@@ -30,80 +30,93 @@
         <div class="flex justify-between w-full"> <img v-bind:src="image" width="200" class="rounded-lg">
           <div class="ml-2">
             <div class="p-3">
-              <h3 class="text-2xl">{{name}}</h3> <span>{{position}}</span>
+              <h3 class="text-2xl">{{newFirstname}} {{newLastname}}</h3> <span>{{newChosendegree}}</span>
+              <p>{{newAge}}</p>
             </div>
-            <div class="flex justify-between items-center p-3 bg-gray-200 rounded-lg">
+            <!-- <div class="flex justify-between items-center p-3 bg-gray-200 rounded-lg">
               <div class="mr-3"> <span class="text-gray-400 block">Article</span> <span
                   class="font-bold text-black text-xl">{{article}}</span> </div>
               <div class="mr-3"> <span class="text-gray-400 block">Follwers</span> <span
                   class="font-bold text-black text-xl">{{follower}}</span> </div>
               <div> <span class="text-gray-400 block">Ratings</span> <span class="font-bold text-black text-xl">{{rating}}</span> </div>
-            </div>
+            </div> -->
           </div>
         </div>
-        <form @submit.prevent="checkForm">
-          <div class="container  p-8 mx-auto mt-10 border rounded-lg">
-            <h1 class="text-2xl pt-4 pb-4">Registration Form</h1>
-            <p v-if="errors.length" class="text-red-500">
-              <b>Please correct the following error(s):</b>
-            <ul>
-              <li v-for="error in errors" class="text-red-500">{{ error }}</li>
-            </ul>
-            </p>
-            <div class="grid grid-cols-2 gap-4">
-              <div class="flex flex-col">
-                <label for="firstname" class="text-sm leading-7 text-gray-600">First Name</label>
-                <input type="text" id="firstname" v-model="formdata.firstname" name="firstname"
-                  class="bg-gray-100 rounded px-4 py-2 mb-4">
-              </div>
-              <div class="flex flex-col">
-                <label for="lastname" class="text-sm leading-7 text-gray-600">Last Name</label>
-                <input type="text" id="lastname" v-model="formdata.lastname" name="lastname"
-                  class="bg-gray-100 rounded px-4 py-2 mb-4">
-              </div>
-              <div class="flex flex-col">
-                <label for="age" class="text-sm leading-7 text-gray-600">Age</label>
-                <input type="text" id="age" v-model="formdata.age" name="age" class="bg-gray-100 rounded px-4 py-2 mb-4">
-              </div>
-              <div class="flex flex-col">
-                <label class="text-sm leading-7 text-gray-600">Gender</label>
-                <div class="flex flex-row pt-2 space-x-2">
-                  <input type="radio" id="Male" v-model="formdata.gender" name="gender" value="M"
-                    class="bg-gray-100 rounded px-4 py-2 mb-4">
-                  <label for="Male">Male</label>
-                  <input type="radio" id="Female" v-model="formdata.gender" name="gender" value="F"
-                    class="bg-gray-100 rounded px-4 py-2 mb-4">
-                  <label for="Female">Female</label>
-                </div>
-              </div>
-              <div class="flex flex-col">
-                <label for="email" class="text-sm leading-7 text-gray-600">Email</label>
-                <input type="text" id="email" v-model="formdata.email" name="email" class="bg-gray-100 rounded px-4 py-2 mb-4">
-              </div>
-              <div class="flex flex-col">
-                <label for="phone" class="text-sm leading-7 text-gray-600">Phone Number</label>
-                <input type="text" id="phone" v-model="formdata.phone" name="phone" class="bg-gray-100 rounded px-4 py-2 mb-4">
-              </div>
-              <div class="flex flex-col col-span-2">
-                <label for="chosendegree" class="text-sm leading-7 text-gray-600">Degree</label>
-                <select id="chosendegree" v-model="formdata.chosendegree" name="chosendegree"
-                  class="bg-gray-100 rounded px-4 py-2 mb-4">
-                  <option v-for="degree in degree_lists" :value="degree.degree_id">
-                    {{degree.degree_name}}
-                  </option>
-              </div>
-              <div>
-                <input type="submit" value="Submit"
-                  class="px-8 py-2 text-white bg-green-500 rounded-lg hover:bg-green-600 focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2">
-              </div>
-            </div>
-          </div>
-        </form>
-        <div class="flex justify-between items-center mt-2 gap-2"> <button
+        <div class="flex justify-between items-center pt-5 gap-2"> <button
           class="w-full h-12 rounded-md border-2 text-md hover:shadow hover:bg-red-700 hover:border-red-700 hover:text-white ">Follow</button>
         <button
           class="w-full h-12 rounded-md bg-blue-700 text-white text-md hover:shadow hover:bg-blue-800">Chat</button>
       </div>
+
+        <form @submit.prevent="checkForm" action="register_subject.php" method="post">
+          <div class="container p-8 mx-auto mt-5 border rounded-lg">
+            <h1 class="text-2xl py-4">Personal information</h1>
+            <div v-if="errors" class="text-red-500">
+              <b>Please correct the following error(s):</b>
+            <ul>
+              <li v-for="errors" class="text-red-500">{{ error }}</li>
+            </ul>
+          </div>
+
+            <div class="grid grid-cols-2 gap-6">
+
+              <div class="flex flex-col">
+                <label for="firstname" class="text-sm leading-7 text-gray-600">Firstname</label>
+                <input type="text" id="firstname" v-model="firstname" name="firstname" class="bg-gray-100 rounded px-4 py-2 mb-4">
+            </div>
+
+            <div class="flex flex-col">
+                <label for="lastname" class="text-sm leading-7 text-gray-600">Lastname</label>
+                <input v-model="lastname" class="bg-gray-100 rounded px-4 py-2 mb-4">
+            </div>
+
+              <div class="flex flex-col">
+                <label for="age" class="text-sm leading-7 text-gray-600">Age</label>
+                <input v-model="age"class="bg-gray-100 rounded px-4 py-2 mb-4">
+              </div>
+
+              <div class="flex flex-col">
+                <label class="text-sm leading-7 text-gray-600">Gender</label>
+                <div class="flex flex-row pt-2 space-x-2">
+                  <input type="radio" v-model="gender" value="M"
+                    class="bg-gray-100 rounded px-4 py-2 mb-4">
+                  <label for="Male">Male</label>
+                  <input type="radio" v-model="gender" value="F"
+                    class="bg-gray-100 rounded px-4 py-2 mb-4">
+                  <label for="Female">Female</label>
+                  <input type="radio" v-model="gender" value="L"
+                    class="bg-gray-100 rounded px-4 py-2 mb-4">
+                  <label for="Female">LGBT</label>
+                </div>
+              </div>
+
+              <div class="flex flex-col">
+                <label for="email" class="text-sm leading-7 text-gray-600">Email</label>
+                <input v-model="email" class="bg-gray-100 rounded px-4 py-2 mb-4">
+              </div>
+
+              <div class="flex flex-col">
+                <label for="phone" class="text-sm leading-7 text-gray-600">Phone Number</label>
+                <input v-model="phone" class="bg-gray-100 rounded px-4 py-2 mb-4">
+              </div>
+
+              <div class="flex flex-col col-span-2">
+                <label for="chosendegree" class="text-sm leading-7 text-gray-600">Degree</label>
+                <select v-model="chosendegree" class="bg-gray-100 rounded px-4 py-2 mb-4">
+                  <option v-for="degree in degree_lists" :value="degree.degree_id">
+                    {{degree.degree_name}}
+                  </option>
+                </select>
+              </div>
+
+              <div>
+                <input type="submit" value="Summit" @click = "submit"
+                  class="mx-auto px-8 py-2 text-white bg-green-500 rounded-lg hover:bg-green-600 focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2">
+              </div>
+              
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
