@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Group Work2</title>
+
+  <!-- https://google.github.io/material-design-icons/#icon-font-for-the-web -->
+  <!-- Using via Google Web Fonts -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+  <!-- https://tailwindcss.com/docs/installation -->
+  <!-- Using Tailwind via CDN -->
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+
+  <!-- https://v3.vuejs.org/guide/installation.html#release-notes -->
+  <!-- Vue CDN -->
+  <script src="https://unpkg.com/vue@next"></script>
+  <!--Validate.js-->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+
+</head>
+
+<body class="bg-gray-300">
+  <div class="h-screen " id="app">
+    <div class="container flex justify-center py-52 ">
+      <div class="p-3 bg-green-100 rounded-xl max-w-lg hover:shadow">
+        <div class="flex justify-between w-full"> <img :src="url" width="150" class="rounded-lg h-64">
+          <div class="ml-2">
+            <div v-if="errors" class="text-red-500">
+              <b>Please correct the following error(s):</b>
+              <ul>
+                <li v-for="error in errors" class="text-red-500">{{ error }}</li>
+              </ul>
+            </div>
+            <div v-else class="bg-yellow-200 p-2 font-mono  rounded-xl">
+              <p>You Firstname : {{Firstname}}</p>
+              <p>You Lastname : {{Lastname}}</p>
+              <p>You Age : {{Age}}</p>
+              <p>You Nickname : {{Nickname}}</p>
+              <p>You Email : {{Email}}</p>
+              <p>You Education : {{Chosensubject}}</p>
+            </div>
+            <form @submit.prevent="checkForm" action="register_subject.php" method="post">
+              <div class="p-3 grid grid-cols-2">
+                <div class="px-2">
+                  <h3 class="text-2xl">Firstname</h3>
+                  <input v-model="firstname" placeholder="Firstname" class="w-full px-1">
+                </div>
+                <div class="px-2">
+                  <h3 class="text-2xl">Lastname</h3>
+                  <input v-model="lastname" placeholder="Lastname" class="w-full px-1">
+                </div>
+                <div class="px-2">
+                  <h3 class="text-2xl">Age</h3>
+                  <input v-model="age" placeholder="Age" class="w-full px-1">
+                </div>
+                <div class="px-2">
+                  <h3 class="text-2xl">Nickname</h3>
+                  <input v-model="nickname" placeholder="Nickname" class="w-full px-1">
+                </div>
+                <div class="px-2 col-span-2 ">
+                  <h3 class="text-2xl">Email</h3>
+                  <input v-model="email" placeholder="Email" class="w-full px-1">
+                </div>
+                <div class="px-2 col-span-2">
+                  <label class="text-2xl" for="option">Education </label>
+                  <select v-model="chosensubject" class="w-72" name="option" id="option">
+                    <option v-for="subject in subject_lists" :value="subject.subject_name">
+                      {{subject.subject_name}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              
+              <input style="cursor:pointer" class="w-full h-12 rounded-md border-2 text-md hover:shadow hover:bg-red-700 hover:border-red-700 hover:text-white " type="submit" value="Submit" 
+              @click="submit"/>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- my main.js -->
+  <script src="./profile.js"></script>
+</body>
+
+</html>
